@@ -1,7 +1,7 @@
 <template>
     <div v-if="users.length > 0" class="user-list">
         <n-scrollbar style="padding-right: 15px;" trigger="none">
-            <user-item @mainInformation="$emit('mainInformation', user)" :user="user" v-for="user in users"/>
+            <user-item @focus="$emit('focus', bool)" :user="user" v-for="user in users"/>
         </n-scrollbar>
     </div>
     <h1 v-else-if="!value">Начните поиск</h1>

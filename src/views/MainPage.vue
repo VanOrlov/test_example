@@ -10,8 +10,9 @@
                     <h1 style="font-size: 16px; font-weight: 600; margin-bottom: 22px;">Поиск сотрудников</h1>
                     <input v-model="value" @input="sendRequest" placeholder="Введите Id или имя" type="text">
                     <h1 style="font-size: 16px; font-weight: 600; margin-bottom: 10px;">Результаты</h1>
-                    <user-list @mainInformation="func" :isLoading="isLoading" :value="value" :users="users"/>
+                    <user-list @focus="func" :isLoading="isLoading" :value="value" :users="users"/>
                 </div>
+                <main-information :focus="focus" :user="user"/>
             </div>
         </div>
     </div>
@@ -20,15 +21,18 @@
 <script>
 import axios from 'axios'
 import UserList from '@/components/UserList'
+import MainInformation from '@/components/MainInformation'
     export default {
         components:{
-            UserList
+            UserList,
+            MainInformation
         },
         data(){
             return{
                 value: '',
                 users: [],
-                isLoading: false
+                isLoading: false,
+                focus: false,
             }
         },
         methods:{
@@ -58,8 +62,8 @@ import UserList from '@/components/UserList'
                 this.users = response.data
                 this.isLoading = false
             },
-            func(user){
-                console.log(user.name);
+            func(bool){
+                this.focus = bool
             }
         }
     }
