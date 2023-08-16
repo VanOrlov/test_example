@@ -1,5 +1,5 @@
 <template>
-    <div tabindex="0" @focus="handleFocus" @blur="handleBlur" class="user">
+    <div tabindex="0" @focus="handleFocus(true)" @blur="handleBlur(false)" class="user">
         <div class="img__container">
             <img src="" alt="">
         </div>
@@ -23,17 +23,15 @@
             }
         },
         methods:{
-            handleFocus(){
+            handleFocus(bool){
                 this.$store.commit('setIsFocus', this.user)
-                this.focus = true
-                this.$emit('focus', this.focus)
-                console.log(this.focus);
+                this.focus = bool
+                this.$emit('fun', bool)
             },
-            handleBlur(){
+            handleBlur(bool){
                 this.$store.commit('removeIsFocus')
-                this.focus = false
-                this.$emit('focus', this.focus)
-                console.log(this.focus);
+                this.focus = bool
+                this.$emit('fun', bool)
             }
         }
     }

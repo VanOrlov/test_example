@@ -10,9 +10,9 @@
                     <h1 style="font-size: 16px; font-weight: 600; margin-bottom: 22px;">Поиск сотрудников</h1>
                     <input v-model="value" @input="sendRequest" placeholder="Введите Id или имя" type="text">
                     <h1 style="font-size: 16px; font-weight: 600; margin-bottom: 10px;">Результаты</h1>
-                    <user-list @focus="func" :isLoading="isLoading" :value="value" :users="users"/>
+                    <user-list @fun="handler" :isLoading="isLoading" :value="value" :users="users"/>
                 </div>
-                <main-information :focus="focus" :user="user"/>
+                <main-information :focus="focus"/>
             </div>
         </div>
     </div>
@@ -62,7 +62,7 @@ import MainInformation from '@/components/MainInformation'
                 this.users = response.data
                 this.isLoading = false
             },
-            func(bool){
+            handler(bool){
                 this.focus = bool
             }
         }
