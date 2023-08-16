@@ -3,7 +3,7 @@ import MainPage from '@/views/MainPage'
 
 const routes = [
   {
-    path: '/main',
+    path: '/',
     component: MainPage
   }
 ]
