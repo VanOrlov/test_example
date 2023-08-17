@@ -58,13 +58,13 @@ import MainInformation from '@/components/MainInformation'
                             params.name.push(value)
                         }
                     })
+
+                    const response = await axios.get('https://jsonplaceholder.typicode.com/users', {params})
+                    this.users = response.data
+                    this.isLoading = false
                 } catch (error) {
                     alert(error);
                 }
-                
-                const response = await axios.get('https://jsonplaceholder.typicode.com/users', {params})
-                this.users = response.data
-                this.isLoading = false
             },
             handler(bool){
                 this.focus = bool
