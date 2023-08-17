@@ -37,26 +37,30 @@ import MainInformation from '@/components/MainInformation'
         },
         methods:{
             async sendRequest(){
-                this.users = []
-                this.isLoading = true
-                let values = this.value.split(',').map(value => value.trim())
+                try {
+                    this.users = []
+                    this.isLoading = true
+                    let values = this.value.split(',').map(value => value.trim())
 
-                let params = {
-                }
-
-                values.forEach(value => {
-                    if (!isNaN(value)) {
-                        if(!params.id){
-                            params.id = []
-                        }
-                        params.id.push(Number(value))
-                    }else{
-                        if (!params.name) {
-                            params.name = []
-                        }
-                        params.name.push(value)
+                    let params = {
                     }
-                })
+
+                    values.forEach(value => {
+                        if (!isNaN(value)) {
+                            if(!params.id){
+                                params.id = []
+                            }
+                            params.id.push(Number(value))
+                        }else{
+                            if (!params.name) {
+                                params.name = []
+                            }
+                            params.name.push(value)
+                        }
+                    })
+                } catch (error) {
+                    alert(error);
+                }
                 
                 const response = await axios.get('https://jsonplaceholder.typicode.com/users', {params})
                 this.users = response.data
